@@ -26,7 +26,8 @@ Desarrollo de sistema 'Servidor' - 'Cliente' con especificaciones de la materia:
                         cada uno que da de baja la conexión con la sala de chat. 
                         Entre clientes hay comunicación fluida y detallada de quien envía el mensaje.
                         
-
+## Lenguaje y módulos utilizados:
+                        Se utilizó lenguaje Python, módulos y librería: 'socket', 'threading', 'os' y 'sys'
 ## Author:
 
 - Pettinari Gabriel Alejandro
