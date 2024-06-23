@@ -33,7 +33,7 @@ server.listen(5)
 print("\nSERVER >> Running on:")
 
 print("Address: {} \nPort: {}\n".format(host, port))
-
+print("SERVER >> listening...")
 
 # Lista de clientes y lista de nombres de usuarios de los mismos.
 
@@ -55,12 +55,12 @@ def mensajesEnvios(datosMensajes, _cliente):
 # Esta función llama a la funciónn "mensajeEnvios" para comparar los clientes que envían los mennsajes
 # también permite borrar al cliente en caso de darse como desconectado del servidor.
 
-def mensajesClientes(cliente):
+def mensajesClientes(cliente, direccion, usuario):
 
     while True:
       try:
-        print("Conexión con {}.".format(cliente))
-        conectado = cliente.send("SERVER >> Bienvenido/a al sistema de comunicación Server/Client!!!".encode('UTF-8'))
+        print("connection data; \n{}.".format(cliente))
+        conectado = cliente.send("SERVER >> Bienvenido/a al sistema de comunicación Server/Client!!!\nSERVER >> Para 'Salir' ingrese palabra clave 'quit'\n".encode('UTF-8'))
         while True:
           if cliente:
             datosMensajes = cliente.recv(4096)
@@ -82,10 +82,15 @@ def mensajesClientes(cliente):
     while True:
       print("\nSERVER >> Running on:")
       print("Address: {} \nPort: {}\n".format(host, port))
-      print(f'''------------------------------------------------------------------------------------------------------------------------------------------------
-      {cliente}, cerró sesión !!!
-------------------------------------------------------------------------------------------------------------------------------------------------''')
+      print(f'''-------------------------------------------------------------------------------
+                 {usuario}: {str(direccion)}, Cerrando sesión...
+-------------------------------------------------------------------------------''')
+      indexListaClientes = clientes.index(cliente)
+      usuarioCliente = usuarios[indexListaClientes] 
+      mensajesClientes=print(f"SERVER >> {usuarioCliente} Desconectado!!!".encode("utf-8"))
       clientes.remove(cliente)
+      usuarios.remove(usuarioCliente)
+      print("SERVER >> listening...")
       cliente.close()
       break
 
@@ -111,6 +116,6 @@ def conectar():
       mensajesEnvios(mensaje, cliente)
       cliente.send("SERVER >> Conectado al Servidor...".encode('utf-8'))
 # Se crea el hilo, mediante la librería importada "threading" para la función "mensajesClientes".
-      threading.Thread(target=mensajesClientes, args=(cliente,)).start()
+      threading.Thread(target=mensajesClientes, args=(cliente,direccion, usuario)).start()
 # Se llama a la función conectar.
 conectar()
