@@ -59,7 +59,7 @@ def mensajesClientes(cliente, direccion, usuario):
 
     while True:
       try:
-        print("connection data; \n{}.".format(cliente))
+        print("connection data; \n{}.\n".format(cliente))
         conectado = cliente.send("SERVER >> Bienvenido/a al sistema de comunicación Server/Client!!!\nSERVER >> Para 'Salir' ingrese palabra clave 'quit'\n".encode('UTF-8'))
         while True:
           if cliente:
@@ -68,7 +68,9 @@ def mensajesClientes(cliente, direccion, usuario):
           else:
             indexListaClientes = clientes.index(cliente)
             usuarioCliente = usuarios[indexListaClientes] 
-            mensajesClientes(f'[Mensaje-Servidor]>> {usuarioCliente} Desconectado'.encode("utf-8"))
+            mensajesClientes = (f"SERVER >> {usuarioCliente} Desconectado!!!".encode("utf-8"))
+            print(mensajesClientes)
+            mensajesEnvios(mensajesClientes, cliente)
             clientes.remove(cliente)
             usuarios.remove(usuarioCliente)
 # Sección de except para tomar el Error ejecutado por el sistema al momento de desconectarse del cliente.
@@ -87,7 +89,9 @@ def mensajesClientes(cliente, direccion, usuario):
 -------------------------------------------------------------------------------''')
       indexListaClientes = clientes.index(cliente)
       usuarioCliente = usuarios[indexListaClientes] 
-      mensajesClientes=print(f"SERVER >> {usuarioCliente} Desconectado!!!".encode("utf-8"))
+      mensajesClientes = (f"SERVER >> {usuarioCliente} Desconectado/a!!!".encode("utf-8"))
+      print(mensajesClientes)
+      mensajesEnvios(mensajesClientes, cliente)
       clientes.remove(cliente)
       usuarios.remove(usuarioCliente)
       print("SERVER >> listening...")
@@ -109,9 +113,9 @@ def conectar():
       clientes.append(cliente)
       usuarios.append(usuario)
 # Informa en pantalla de servidor la conexión autorizada con el cliente.
-      print(f'[CLIENTE {usuario}] se conecto con {str(direccion)}')
+      print(f'[CLIENTE: {usuario}] se conecto con {str(direccion)}')
 # Informa a los clientes ya ingresados en la sala de chat, quien se agregó a la misma.
-      mensaje = f'\nSERVER >> {usuario} Conectado a Chat...'.encode("utf-8")
+      mensaje = f'\nSERVER >> {usuario} Conectado a Chat...\n'.encode("utf-8")
 # Se envía al cliente la leyenda de conexión correcta con el servidor.
       mensajesEnvios(mensaje, cliente)
       cliente.send("SERVER >> Conectado al Servidor...".encode('utf-8'))
