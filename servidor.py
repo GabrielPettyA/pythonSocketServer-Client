@@ -120,6 +120,7 @@ def conectar():
       mensajesEnvios(mensaje, cliente)
       cliente.send("SERVER >> Conectado al Servidor...".encode('utf-8'))
 # Se crea el hilo, mediante la librería importada "threading" para la función "mensajesClientes".
-      threading.Thread(target=mensajesClientes, args=(cliente,direccion, usuario)).start()
+      hilo = threading.Thread(target=mensajesClientes, args=(cliente,direccion, usuario),daemon=True)
+      hilo.start()
 # Se llama a la función conectar.
 conectar()
