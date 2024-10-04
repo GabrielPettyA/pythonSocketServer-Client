@@ -1,7 +1,8 @@
 
-## Servidor que conecta a diversos clientes que pueden comunicarse entre ellos.
+## SISTEMA DE CHAT - Servidor que conecta a diversos clientes que pueden comunicarse entre ellos.
 
-Desarrollo de sistema 'Servidor' - 'Cliente' especificaciones:
+## Desarrollo de sistema "Servidor - Cliente", especificaciones:
+                                    Desarrollo a través de hilos,
                                     Interrelación entre cliente y servidor,
                                     conexión entre cliente y servidor,
                                     conexión entre cliente y cliente,
