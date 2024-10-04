@@ -12,7 +12,7 @@
 ## Acerca del programa:
                         Se realiza programa cliente-servidor utilizando lenguaje 
                         Python y el módulo socket.
-                        creado bajo el dominio PF_INET (IPv4). 
+                        Creado bajo el dominio PF_INET (IPv4). 
                         El programa ofrece la posibilidad de comunicarse entre 
                         clientes conectados al servidor, dicho servidor puede 
                         enviar mensaje de bienvenida a los clientes que se 
